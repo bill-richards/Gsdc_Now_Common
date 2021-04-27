@@ -6,7 +6,7 @@
 /**
  * The structure of the transmitted messages
  */
-typedef struct inter_gram {
+typedef struct inter_network_datagram {
   char sender[16] = { };
   char message[64] = { };
   int readingId;
@@ -19,7 +19,7 @@ typedef struct inter_gram {
  * 
  * ESP_NOW only permits messages of 256k so keep that in mind
  */
-typedef struct esp_datagram {    
+typedef struct esp_now_network_client_sensor_datagram { 
   NowTransmittedDataTypes containedData = GPS;  // Identifies the type of data contained in the datagram
   char sender[16] = { };                        // Identifies the sender of the datagram
   double lattitude;                             // For GPS data transfer
