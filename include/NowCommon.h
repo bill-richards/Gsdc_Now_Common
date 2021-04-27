@@ -184,12 +184,11 @@ int32_t getWiFiChannel(const char *ssid)
     else \
     { \
         Serial.println("failed"); \
-    } 
+    }
 
-
-#define PREPARE_DATAGRAM(data_type) \
+#define PREPARE_DATAGRAM(transmitted_data_type, board_identifier) \
   _datagram = esp_datagram(); \
-  _datagram.containedData = data_type; \
-  memcpy(&_datagram.sender, BOARD_ID, 16);
+  _datagram.containedData = transmitted_data_type; \
+  memcpy(&_datagram.sender, board_identifier, 32);
     
 #endif

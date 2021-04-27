@@ -20,11 +20,11 @@ typedef struct inter_network_datagram {
  * ESP_NOW only permits messages of 256k so keep that in mind
  */
 typedef struct esp_now_network_client_sensor_datagram { 
-  NowTransmittedDataTypes containedData = GPS;  // Identifies the type of data contained in the datagram
-  char sender[16] = { };                        // Identifies the sender of the datagram
-  double lattitude;                             // For GPS data transfer
-  double longitude;                             // For GPS data transfer
-  double altitude;                              // For GPS data transfer
+  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
+  char sender[32] = { };                          // Identifies the sender of the datagram
+  double lattitude;                               // For GPS data transfer
+  double longitude;                               // For GPS data transfer
+  double altitude;                                // For GPS data transfer
 } esp_datagram;
 
 
