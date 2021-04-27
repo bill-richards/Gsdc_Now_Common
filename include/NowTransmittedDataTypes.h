@@ -1,9 +1,9 @@
 #ifndef _NowTransmittedDataTypes_h_
 #define _NowTransmittedDataTypes_h_
 
-typedef enum {
+typedef enum NowTransmittedDataTypes {
   NONE = -1,
   GPS
-} NowTransmittedDataTypes;
+};
 
 #endif
