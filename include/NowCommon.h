@@ -4,6 +4,7 @@
 #include <NonVolatileMemory.h>
 #include <SPIFFS.h>
 #include <esp_wifi.h>
+#include <esp_now.h>
 #include <WiFi.h>
 
 #include "NowStructs.h"
