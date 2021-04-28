@@ -187,7 +187,6 @@ inline int32_t getWiFiChannel(const char *ssid)
     }
 
 #define PREPARE_DATAGRAM(transmitted_data_type, board_identifier) \
-  _datagram = esp_datagram(); \
   _datagram.transmitted_data = transmitted_data_type; \
   memcpy(&_datagram.sender, board_identifier, 32);
     
