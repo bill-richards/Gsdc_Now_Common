@@ -30,7 +30,7 @@ typedef struct esp_now_network_client_sensor_datagram_
     struct            // For IMU data transfer
     {
       float pitch;
-      float yaw;
+      float roll;
     } imu;
 
     struct            // For GPS data transfer
