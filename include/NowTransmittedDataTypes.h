@@ -3,7 +3,8 @@
 
 enum NowTransmittedDataTypes {
   NONE = -1,
-  GPS
+  GPS,
+  IMU
 };
 
 #endif
