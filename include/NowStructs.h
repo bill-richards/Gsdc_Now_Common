@@ -17,7 +17,6 @@ typedef struct inter_network_datagram {
  * This struct is used to send GPS data from the ESP32 slave to the Master.
  */
 struct esp_now_network_client_gps_sensor_datagram { 
-  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
   char sender[32] = { };                          // Identifies the sender of the datagram
   double lattitude;                               // For GPS data transfer
   double longitude;                               // For GPS data transfer
@@ -28,7 +27,6 @@ struct esp_now_network_client_gps_sensor_datagram {
  * This struct is used to send IMU data from the ESP32 slave to the Master.
  */
 struct esp_now_network_client_imu_sensor_datagram { 
-  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
   char sender[32] = { };                          // Identifies the sender of the datagram
   float pitch;                                    // For IMU data transfer
   float yaw;                                      // For IMU data transfer
@@ -40,6 +38,7 @@ struct esp_now_network_client_imu_sensor_datagram {
  */
 union esp_datagram
 {
+  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
   esp_now_network_client_gps_sensor_datagram gps;
   esp_now_network_client_imu_sensor_datagram imu;
 };
