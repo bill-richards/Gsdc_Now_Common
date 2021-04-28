@@ -14,46 +14,33 @@ typedef struct inter_network_datagram {
   int readingId;
 } inter_gram;
 
-
-struct esp_now_network_client_sensor_datagram 
-{ 
-  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
-  char sender[SENDER_STRING_LENGTH] = { };        // Identifies the sender of the datagram
-};
-
 /**
- * This struct is used to send IMU data from the ESP32 slave to the Master.
+ * This struct is used to send data from the ESP32 slave to the Master.
  */
-struct esp_now_network_client_imu_sensor_datagram // For IMU data transfer
+typedef struct esp_now_network_client_sensor_datagram_ 
 { 
-  NowTransmittedDataTypes transmitted_data = NONE;
-  char sender[SENDER_STRING_LENGTH] = { };                          
-  float pitch;                                    
-  float yaw;                                      
-};
+  struct
+  {
+    NowTransmittedDataTypes transmitted_data = NONE;
+    char sender[SENDER_STRING_LENGTH] = { };
+  } header;           // Describes the type of data contained and the sender
 
-/**
- * This struct is used to send GPS data from the ESP32 slave to the Master.
- */
-struct esp_now_network_client_gps_sensor_datagram // For GPS data transfer
-{ 
-  NowTransmittedDataTypes transmitted_data = NONE;
-  char sender[SENDER_STRING_LENGTH] = { };                          
-  double lattitude;                                 
-  double longitude;                               
-  double altitude;                                
-};
+  union
+  {
+    struct            // For IMU data transfer
+    {
+      float pitch;
+      float yaw;
+    } imu;
 
-/**
- * ESP_NOW only permits messages of 256k so keeping that in mind
- * the esp_datagram struct is a union of the various possible data
- */
-union esp_datagram
-{
-  esp_now_network_client_sensor_datagram descriptor;  // Access this struct to set sender and data type
-  esp_now_network_client_imu_sensor_datagram imu;
-  esp_now_network_client_gps_sensor_datagram gps;
-};
-
+    struct            // For GPS data transfer
+    {
+      double longitude;                               
+      double latitude;                                 
+      double altitude;                                
+    } gps;
+  };
+  
+} esp_datagram;
 
 #endif
