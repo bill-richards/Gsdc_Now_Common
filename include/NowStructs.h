@@ -3,33 +3,45 @@
 
 #include "NowTransmittedDataTypes.h"
 
+#define SENDER_STRING_LENGTH 32
+
 /**
  * The structure of the transmitted messages
  */
 typedef struct inter_network_datagram {
-  char sender[16] = { };
+  char sender[SENDER_STRING_LENGTH] = { };
   char message[64] = { };
   int readingId;
 } inter_gram;
 
 
-/**
- * This struct is used to send GPS data from the ESP32 slave to the Master.
- */
-struct esp_now_network_client_gps_sensor_datagram { 
-  char sender[32] = { };                          // Identifies the sender of the datagram
-  double lattitude;                               // For GPS data transfer
-  double longitude;                               // For GPS data transfer
-  double altitude;                                // For GPS data transfer
+struct esp_now_network_client_sensor_datagram 
+{ 
+  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
+  char sender[SENDER_STRING_LENGTH] = { };        // Identifies the sender of the datagram
 };
 
 /**
  * This struct is used to send IMU data from the ESP32 slave to the Master.
  */
-struct esp_now_network_client_imu_sensor_datagram { 
-  char sender[32] = { };                          // Identifies the sender of the datagram
-  float pitch;                                    // For IMU data transfer
-  float yaw;                                      // For IMU data transfer
+struct esp_now_network_client_imu_sensor_datagram // For IMU data transfer
+{ 
+  NowTransmittedDataTypes transmitted_data = NONE;
+  char sender[SENDER_STRING_LENGTH] = { };                          
+  float pitch;                                    
+  float yaw;                                      
+};
+
+/**
+ * This struct is used to send GPS data from the ESP32 slave to the Master.
+ */
+struct esp_now_network_client_gps_sensor_datagram // For GPS data transfer
+{ 
+  NowTransmittedDataTypes transmitted_data = NONE;
+  char sender[SENDER_STRING_LENGTH] = { };                          
+  double lattitude;                                 
+  double longitude;                               
+  double altitude;                                
 };
 
 /**
@@ -38,9 +50,9 @@ struct esp_now_network_client_imu_sensor_datagram {
  */
 union esp_datagram
 {
-  NowTransmittedDataTypes transmitted_data = NONE;// Identifies the type of data contained in the datagram
-  esp_now_network_client_gps_sensor_datagram gps;
+  esp_now_network_client_sensor_datagram descriptor;  // Access this struct to set sender and data type
   esp_now_network_client_imu_sensor_datagram imu;
+  esp_now_network_client_gps_sensor_datagram gps;
 };
 
 
