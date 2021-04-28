@@ -1,5 +1,5 @@
-#ifndef _Gsdc_WebCommon_h_
-#define _Gsdc_WebCommon_h_
+#ifndef _Gsdc_NowCommon_h_
+#define _Gsdc_NowCommon_h_
 
 #include <NonVolatileMemory.h>
 #include <SPIFFS.h>
@@ -21,10 +21,10 @@ const DataMarkers REMOTE_PASSWORD_MARKER = DataMarkers::FF;
 const DataMarkers SERVER_MAC_ADDRESS_MARKER = DataMarkers::SI;
 const DataMarkers REMOTE_SERVER_MAC_ADDRESS_MARKER = DataMarkers::SO;
 
-uint8_t local_broadcastAddress[]  = { 0x7C, 0x9E, 0xBD, 0xF9, 0xB5, 0xFC }; // Local AP
-uint8_t remote_broadcastAddress[] = { 0xab, 0xbc, 0xcd, 0xdc, 0xcb, 0xba };
+const uint8_t local_broadcastAddress[]  = { 0x7C, 0x9E, 0xBD, 0xF9, 0xB5, 0xFC }; // Local AP
+const uint8_t remote_broadcastAddress[] = { 0xab, 0xbc, 0xcd, 0xdc, 0xcb, 0xba };
 
-int32_t getWiFiChannel(const char *ssid) 
+inline int32_t getWiFiChannel(const char *ssid) 
 { 
   if (int32_t n = WiFi.scanNetworks()) 
   { 
