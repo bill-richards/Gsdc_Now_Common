@@ -20,8 +20,8 @@ const DataMarkers PASSWORD_MARKER = DataMarkers::ETX;
 const DataMarkers REMOTE_PASSWORD_MARKER = DataMarkers::FF;
 const DataMarkers SERVER_MAC_ADDRESS_MARKER = DataMarkers::SI;
 const DataMarkers REMOTE_SERVER_MAC_ADDRESS_MARKER = DataMarkers::SO;
-
-const uint8_t local_broadcastAddress[]  = { 0x7C, 0x9E, 0xBD, 0xF9, 0xB5, 0xFC }; // Local AP
+const uint8_t local_broadcastAddress[]  = { 0x9c, 0x9c, 0x1f, 0xc5, 0x39, 0x78 };
+//const uint8_t local_broadcastAddress[]  = { 0x7C, 0x9E, 0xBD, 0xF9, 0xB5, 0xFC }; // Local AP
 const uint8_t remote_broadcastAddress[] = { 0xab, 0xbc, 0xcd, 0xdc, 0xcb, 0xba };
 
 inline int32_t getWiFiChannel(const char *ssid) 
