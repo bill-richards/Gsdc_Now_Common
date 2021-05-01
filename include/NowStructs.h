@@ -27,6 +27,8 @@ typedef struct esp_now_network_client_sensor_datagram_
 
   union
   {
+    int integer;
+    
     struct            // For IMU data transfer
     {
       float pitch;
